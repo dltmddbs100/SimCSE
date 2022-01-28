@@ -29,6 +29,7 @@ args['learning_rate']=5e-5
 data_loader=get_loader(args,'train')
 
 # Define model
+print('\nModel Loading...')
 model=SimCSE(args, mode='train').to(args['device'])
 
 no_decay = ['bias', 'LayerNorm.weight']
