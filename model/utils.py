@@ -62,7 +62,7 @@ class Argument():
     self.parser.add_argument('--learning_rate', type=float, default='5e-5')
     self.parser.add_argument('--test_model_name', type=str, default='')
     self.parser.add_argument('--test_tokenizer', type=str, default='klue/bert-base')
-    self.parser.add_argument('--train', type=str, default='True')
+    self.parser.add_argument('--train', type=str, default='False')
     self.parser.add_argument('--test', type=str, default='False')
     args = self.parser.parse_args()
    
