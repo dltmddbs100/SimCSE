@@ -27,8 +27,7 @@ class ModelDataLoader(Dataset):
 
         with open(self.file_path) as file:
             lines = file.readlines()
-            
-            print('\nData collecting...')
+
             for line in lines:
                 self.data2tensor(line, type)
 
@@ -103,25 +102,25 @@ class ModelDataLoader(Dataset):
 def get_loader(args, types):
 
   if types == 'train':
-    train_iter = ModelDataLoader(args['path_to_train_data'], args['model_name'], type='train')
-    valid_iter = ModelDataLoader(args['path_to_valid_data'], args['model_name'], type='valid')
+    train_iter = ModelDataLoader(args.path_to_train_data, args.model_name, type='train')
+    valid_iter = ModelDataLoader(args.path_to_valid_data, args.model_name, type='valid')
 
     train_iter.load_data('train')
     valid_iter.load_data('valid')
 
     loader = {'train': DataLoader(dataset=train_iter,
-                                  batch_size=args['batch_size'],
+                                  batch_size=args.batch_size,
                                   shuffle=True, pin_memory=True),
-              'valid': DataLoader(dataset=valid_iter,
-                                  batch_size=args['batch_size'],
+                'valid': DataLoader(dataset=valid_iter,
+                                  batch_size=args.batch_size,
                                   shuffle=True, pin_memory=True)}
 
   else:
-    test_iter = ModelDataLoader(args['path_to_test_data'], args['test_tokenizer'], type='test')
+    test_iter = ModelDataLoader(args.path_to_test_data, args.test_tokenizer, type='test')
     test_iter.load_data('test')
 
     loader = {'test': DataLoader(dataset=test_iter,
-                                  batch_size=args['batch_size'],
+                                  batch_size=args.batch_size,
                                   shuffle=False, pin_memory=True)}
 
   return loader
