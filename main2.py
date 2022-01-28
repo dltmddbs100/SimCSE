@@ -1,7 +1,3 @@
-import torch
-import torch.optim as optim
-from torch import nn
-
 from data.dataloader import ModelDataLoader, get_loader
 from model.model import SimCSE
 from model.loss import Loss
