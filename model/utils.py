@@ -64,6 +64,6 @@ class Argument():
     self.parser.add_argument('--test_tokenizer', type=str, default='klue/bert-base')
     self.parser.add_argument('--train', type=str, default='True')
     self.parser.add_argument('--test', type=str, default='False')
-    args = self.parser.parse_args(args=[])
+    args = self.parser.parse_args()
 
     return args
