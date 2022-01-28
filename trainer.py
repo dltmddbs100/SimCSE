@@ -12,7 +12,7 @@ from model.model import SimCSE
 
 def Trainer(args, data_loader, model, loss, metric):
   
-  print('======== Training ========')
+  print('\n======== Training ========')
   
   no_decay = ['bias', 'LayerNorm.weight']
   optimizer_grouped_parameters = [
