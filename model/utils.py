@@ -1,3 +1,6 @@
+from argparse import ArgumentParser
+
+
 class Metric():
 
     def __init__(self, args):
@@ -40,3 +43,27 @@ class Metric():
                 indicator[key] += score['eval_spearman_dot']
             elif key == 'eval_pearson_dot':
                 indicator[key] += score['eval_pearson_dot']
+
+
+class Argument():
+  def __init__(self):
+    self.parser=ArgumentParser()
+
+  def add_args(self):
+    self.parser.add_argument('--model_name', type=str, default='klue/bert-base')
+    self.parser.add_argument('--weight_path', type=str, default='weights/')
+    self.parser.add_argument('--path_to_train_data', type=str, default='data/train_nli.tsv')
+    self.parser.add_argument('--path_to_valid_data', type=str, default='data/valid_sts.tsv')
+    self.parser.add_argument('--path_to_test_data', type=str, default='data/test_sts.tsv')
+    self.parser.add_argument('--device', type=str, default='cuda')
+    self.parser.add_argument('--temperature', type=float, default='0.05')
+    self.parser.add_argument('--batch_size', type=int, default='128')
+    self.parser.add_argument('--max_epochs', type=int, default='3')
+    self.parser.add_argument('--learning_rate', type=float, default='5e-5')
+    self.parser.add_argument('--test_model_name', type=str, default='')
+    self.parser.add_argument('--test_tokenizer', type=str, default='klue/bert-base')
+    self.parser.add_argument('--train', type=str, default='True')
+    self.parser.add_argument('--test', type=str, default='False')
+    args = self.parser.parse_args(args=[])
+
+    return args
