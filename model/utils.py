@@ -66,6 +66,7 @@ class Argument():
     self.parser.add_argument('--test', type=str, default='False')
     args = self.parser.parse_args()
     
+    print('====== Input arguments ======')    
     self.print_args(args)
     
     return args
