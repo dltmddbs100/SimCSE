@@ -27,7 +27,8 @@ class ModelDataLoader(Dataset):
 
         with open(self.file_path) as file:
             lines = file.readlines()
-
+            
+            print('\nData collecting...')
             for line in lines:
                 self.data2tensor(line, type)
 
