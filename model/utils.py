@@ -65,14 +65,15 @@ class Argument():
     self.parser.add_argument('--train', type=str, default='True')
     self.parser.add_argument('--test', type=str, default='False')
     args = self.parser.parse_args()
-    
-    print('====== Input arguments ======')    
+   
     self.print_args(args)
     
     return args
     
   def print_args(self, args):
-        for idx, (key, value) in enumerate(args.__dict__.items()):
-            if idx == 0:print("argparse{\n", "\t", key, ":", value)
-            elif idx == len(args.__dict__) - 1:print("\t", key, ":", value, "\n}")
-            else:print("\t", key, ":", value)
+    print('====== Input arguments ======')    
+    
+    for idx, (key, value) in enumerate(args.__dict__.items()):
+        if idx == 0:print("argparse{\n", "\t", key, ":", value)
+        elif idx == len(args.__dict__) - 1:print("\t", key, ":", value, "\n}")
+        else:print("\t", key, ":", value)
