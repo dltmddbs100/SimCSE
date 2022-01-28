@@ -93,7 +93,7 @@ def Trainer(args, data_loader, model, loss, metric):
 
 def Tester(args, data_loader, model, loss, metric):
   
-  print('======== Inference ========')
+  print('\n======== Inference ========')
   
   model.to(args.device)
   model.eval()
