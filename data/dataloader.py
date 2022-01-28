@@ -27,7 +27,8 @@ class ModelDataLoader(Dataset):
 
         with open(self.file_path) as file:
             lines = file.readlines()
-        print('\nData collecting...')
+            
+            print('\nData collecting...')
             for line in lines:
                 self.data2tensor(line, type)
 
@@ -111,7 +112,7 @@ def get_loader(args, types):
     loader = {'train': DataLoader(dataset=train_iter,
                                   batch_size=args['batch_size'],
                                   shuffle=True, pin_memory=True),
-                'valid': DataLoader(dataset=valid_iter,
+              'valid': DataLoader(dataset=valid_iter,
                                   batch_size=args['batch_size'],
                                   shuffle=True, pin_memory=True)}
 
