@@ -1,3 +1,5 @@
+import os
+
 import torch
 from torch import nn
 
@@ -11,7 +13,7 @@ class SimCSE(nn.Module):
         if mode == 'train':
           self.model = BertModel.from_pretrained(args.model_name)
         if mode == 'test':
-          self.model = BertModel.from_pretrained(args.weight_path+args.test_model_name)
+          self.model = BertModel.from_pretrained(os.path.join(args.weight_path, args.test_model_name))
 
     def forward(self, inputs, mode):
 
