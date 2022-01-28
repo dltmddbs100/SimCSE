@@ -15,17 +15,17 @@ class Loss():
 
     def train_loss_fct(self, criterion, a, p, n, neg_weight=0):
 
-        positive_similarity = self.cos(a.unsqueeze(1), p.unsqueeze(0)) / self.args['temperature']
-        negative_similarity = self.cos(a.unsqueeze(1), n.unsqueeze(0)) / self.args['temperature']
+        positive_similarity = self.cos(a.unsqueeze(1), p.unsqueeze(0)) / self.args.temperature
+        negative_similarity = self.cos(a.unsqueeze(1), n.unsqueeze(0)) / self.args.temperature
         
-        cosine_similarity = torch.cat([positive_similarity, negative_similarity], dim=1).to(self.args['device'])
+        cosine_similarity = torch.cat([positive_similarity, negative_similarity], dim=1).to(self.args.device)
 
-        labels = torch.arange(cosine_similarity.size(0)).long().to(self.args['device'])
+        labels = torch.arange(cosine_similarity.size(0)).long().to(self.args.device)
 
         # Calculate loss with hard negatives
         weights = torch.tensor(
             [[0.0] * (cosine_similarity.size(-1) - negative_similarity.size(-1)) + [0.0] * i + [neg_weight] + [0.0] * (negative_similarity.size(-1) - i - 1) for i in range(negative_similarity.size(-1))]
-        ).to(self.args['device'])
+        ).to(self.args.device)
 
         cosine_similarity = cosine_similarity + weights
         loss = criterion(cosine_similarity, labels)
