@@ -21,7 +21,7 @@ def main(args):
     data_loader=get_loader(args,'test')
     model=SimCSE(args, mode='test').to(args.device)
     
-    Tester(args, data_loader, loss, metric)
+    Tester(args, data_loader, model, loss, metric)
     
     
 if __name__ == '__main__':
