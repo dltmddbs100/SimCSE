@@ -10,7 +10,8 @@ from data.dataloader import get_loader
 from model.model import SimCSE
 
 def Trainer(args, data_loader, model, loss, metric):
-
+  
+  print('======== Training ========')
   scaler = amp.GradScaler()
   optimizer = args['optimizer']
   criterion = args['criterion']
@@ -81,6 +82,7 @@ def Trainer(args, data_loader, model, loss, metric):
 
 
 def Tester(args, loss, metric):
+
   data_loader=get_loader(args,'test')
 
   model=SimCSE(args, mode='test').to(args['device'])
@@ -97,7 +99,8 @@ def Tester(args, loss, metric):
                      'eval_spearman_euclidean': 0,
                      'eval_pearson_dot': 0,
                      'eval_spearman_dot': 0}
-
+  
+  print('\n======== Inference ========')
   for i, batch in enumerate(data_loader['test']):
     inputs = batch
 
