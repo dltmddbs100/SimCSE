@@ -11,7 +11,9 @@ from data.dataloader import get_loader
 from model.model import SimCSE
 
 def Trainer(args, data_loader, model, loss, metric):
-
+  
+  print('======== Training ========')
+  
   no_decay = ['bias', 'LayerNorm.weight']
   optimizer_grouped_parameters = [
     {'params': [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)],
@@ -90,7 +92,9 @@ def Trainer(args, data_loader, model, loss, metric):
 
 
 def Tester(args, data_loader, model, loss, metric):
-
+  
+  print('======== Inference ========')
+  
   model.to(args.device)
   model.eval()
 
