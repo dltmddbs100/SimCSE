@@ -5,16 +5,16 @@ from torch import nn
 
 def semantic_search(top_k, args, tokenizer, model, corpus, queries):
 
-  model.to(args['device'])
+  model.to(args.device)
   model.eval()
 
   cos=nn.CosineSimilarity()
 
   encodings=tokenizer.batch_encode_plus(corpus,padding='max_length',max_length=50,truncation=True,return_tensors='pt')
-  corpus_embeddings=model.encode(encodings,args['device'])
+  corpus_embeddings=model.encode(encodings,args.device)
 
   for query in queries:
-    query_embedding = model.encode(tokenizer.encode_plus(query,padding='max_length',max_length=50,truncation=True,return_tensors='pt'), args['device'])
+    query_embedding = model.encode(tokenizer.encode_plus(query,padding='max_length',max_length=50,truncation=True,return_tensors='pt'), args.device)
     
     cos_scores = cos(corpus_embeddings, query_embedding).cpu().detach().numpy()
 
